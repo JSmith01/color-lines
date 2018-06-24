@@ -1,12 +1,16 @@
 <template>
     <div class="hello">
         <h1>{{ msg }}</h1>
+        <GameField />
     </div>
 </template>
 
 <script>
+import GameField from './GameField';
+
 export default {
     name: 'MainMenu',
+    components: { GameField },
     data() {
         return {
             msg: 'Color Lines',
