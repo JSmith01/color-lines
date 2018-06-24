@@ -78,9 +78,31 @@ export default {
             const path = astar(field[this.x][this.y], field[toX][toY], field);
             // eslint-disable-next-line no-console
             this.path = path;
+            this.rollBall();
+        },
+
+        rollBall() {
+            if (this.path) {
+                this.x = null;
+                this.y = null;
+                this.locked = true;
+                if (this.path.length > 1) {
+                    let { x, y } = this.path.shift();
+                    const { color } = this.field[x][y];
+                    this.field[x][y] = { status: 'empty', color: COLORS[0] };
+                    x = this.path[0].x;
+                    y = this.path[0].y;
+                    this.field[x][y] = { status: '', color };
+                    this.$nextTick(() => setTimeout(() => this.rollBall(), 30));
+                } else {
+                    this.path = null;
+                    this.locked = false;
+                }
+            }
         },
 
         inPath(x, y) {
+            // return false;
             return this.path && this.path.some(v => v.x === x && v.y === y);
         },
     },
