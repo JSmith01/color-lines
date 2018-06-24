@@ -23,6 +23,15 @@ import astar from '../astar';
 const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const FIELD_SIZE = 9;
 const INITIAL_APPEARED = 40;
+const COLORS = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'darkblue',
+    'purple',
+];
 
 export default {
     name: 'GameField',
@@ -39,7 +48,8 @@ export default {
         for (let i = 0; i < INITIAL_APPEARED; i++) {
             const x = rnd(0, FIELD_SIZE - 1);
             const y = rnd(0, FIELD_SIZE - 1);
-            field[x][y] = { color: 'blue', status: '' };
+            const color = COLORS[rnd(0, 6)];
+            field[x][y] = { color, status: '' };
         }
 
         return { field, x: null, y: null, locked: false, path: null };
