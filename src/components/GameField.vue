@@ -58,7 +58,17 @@ export default {
 
     methods: {
         checkLine(x, y) {
-            console.log(x, y, getMaxLine(this.field, x, y));
+            const maxLine = getMaxLine(this.field, x, y);
+            if (maxLine.length < 5) {
+                return;
+            }
+
+            maxLine.forEach(({ x, y }) => { this.field[x][y].status = 'vanish'; });
+            this.locked = true;
+            this.$nextTick(() => setTimeout(() => {
+                maxLine.forEach(({ x, y }) => { this.field[x][y].status = 'empty'; });
+                this.locked = false;
+            }, 500));
         },
 
         clickOnCell(x, y) {

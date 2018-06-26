@@ -71,8 +71,15 @@ $ball-size: 8vh;
         40%  {transform: translate(0, 3%) scale(1, 1.05);}
         100% {transform: translate(0, 12%) scale(1.05, .95);}
     }
+    @keyframes vanish {
+        0%   {opacity: 1;}
+        100% {opacity: 0;}
+    }
     &.jump {
         animation: jump .5s linear alternate infinite;
+    }
+    &.vanish {
+        animation: vanish .5s linear forwards;
     }
 }
 
