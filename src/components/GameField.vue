@@ -18,7 +18,8 @@
 
 <script>
 import Cell from './Cell';
-import astar from '../astar';
+import astar from '../logic/astar';
+import {getMaxLine} from '../logic/lines';
 
 const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const FIELD_SIZE = 9;
@@ -57,30 +58,7 @@ export default {
 
     methods: {
         checkLine(x, y) {
-            const { field } = this;
-
-            const getColor = ({ x, y }) => field[x] && field[x][y] && field[x][y].status === ''
-                ? { ...field[x][y], x, y }
-                : undefined;
-            const hLineFn = t => ({ x, y: t });
-            const vLineFn = t => ({ x: t, y });
-            const dLineFn = t => ({ x: FIELD_SIZE - t - 1, y: t - FIELD_SIZE + 1 + y + x });
-            const rLineFn = t => ({ x: t, y: t - x + y });
-
-            const getLine = lineFn => Array(FIELD_SIZE).fill(0).map((_, i) => getColor(lineFn(i)));
-
-            /*
-            const tap = x => { console.log(x); return x; };
-            const compose2 = (f, g) => (...args) => f(g(...args));
-            const getLineDebug = lineFn => getLine(compose2(tap, lineFn));
-            */
-
-            const hLine = getLine(hLineFn);
-            const vLine = getLine(vLineFn);
-            const dLine = getLine(dLineFn);
-            const rLine = getLine(rLineFn);
-
-            console.log(x, y, hLine, vLine, dLine, rLine);
+            console.log(x, y, getMaxLine(this.field, x, y));
         },
 
         clickOnCell(x, y) {
