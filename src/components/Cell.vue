@@ -41,27 +41,16 @@ $ball-size: 8vh;
     &.empty {
         visibility: hidden;
     }
-    &.red {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #ff4747, #000);
+    @mixin ball-color($rgb) {
+        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), $rgb, #000);
     }
-    &.orange {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #ffbb33, #000);
-    }
-    &.yellow {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #ffff45, #000);
-    }
-    &.green {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #4dff79, #000);
-    }
-    &.blue {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #5cabff, #000);
-    }
-    &.darkblue {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #5e5eff, #000);
-    }
-    &.purple {
-        background: radial-gradient(circle at ($ball-size / 3) ($ball-size / 3), #e45eff, #000);
-    }
+    &.red { @include ball-color(#ff4747); }
+    &.orange { @include ball-color(#ffbb33); }
+    &.yellow { @include ball-color(#ffff45); }
+    &.green { @include ball-color(#4dff79); }
+    &.blue { @include ball-color(#5cabff); }
+    &.darkblue { @include ball-color(#5e5eff); }
+    &.purple { @include ball-color(#e45eff); }
     &.small {
         transform: scale(0.33) translateY(15%);
         opacity: 0.5;
@@ -90,10 +79,9 @@ $ball-size: 8vh;
     text-align: center;
     background-color: #eee;
     box-sizing: border-box;
-    border-top: ($ball-size * 0.05) solid #f5f5f5;
-    border-left: ($ball-size * 0.05) solid #f5f5f5;
-    border-right: ($ball-size * 0.05) solid #ccc;
-    border-bottom: ($ball-size * 0.05) solid #ccc;
+    border: ($ball-size * 0.05) solid #f5f5f5;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
     &.highlight {
         background-color: #eee9c3;
     }
