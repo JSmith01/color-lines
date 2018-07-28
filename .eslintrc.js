@@ -48,6 +48,7 @@ module.exports = {
     'vue/html-indent': ['error', 4],
     'no-plusplus': 'off',
     'no-mixed-operators': 'off',
+      'linebreak-style': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }

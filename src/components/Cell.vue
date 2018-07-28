@@ -3,27 +3,43 @@
         :class="['cell', highlight ? 'highlight' : '']"
         v-on="$listeners"
     >
-        <div :class="['ball', color, status]" />
+        <div :class="cellStyles" />
     </div>
 </template>
 
 <script>
 export default {
     name: 'Cell',
+
     props: {
         color: {
             required: true,
             type: String,
         },
-        status: {
-            default: '',
-            type: String,
+        small: {
+            default: false,
+            type: Boolean,
+        },
+        jump: {
+            default: false,
+            type: Boolean,
+        },
+        vanish: {
+            default: false,
+            type: Boolean,
         },
         highlight: {
             default: false,
             type: Boolean,
         },
     },
+
+    computed: {
+        cellStyles() {
+            return 'ball ' + (this.color || 'empty') + (this.small ? ' small' : '') + (this.jump ? ' jump' : '')
+                + (this.vanish ? ' vanish' : '');
+        }
+    }
 };
 </script>
 
